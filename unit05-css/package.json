@@ -1,0 +1,11 @@
+{
+  "name": "unit05-css",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "kvlinden",
+  "license": "ISC",
+  "dependencies": {
+    "material-design-lite": "^1.1.3"
+  }
+}
