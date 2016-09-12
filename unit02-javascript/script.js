@@ -14,8 +14,6 @@ test = "forty-two";
 test = true;
 console.log(test);
 
-
-
 // 2. ----------------------------------
 // Sameness
 console.log(1 == 1.0);
@@ -24,7 +22,6 @@ console.log(1 == "1");
 console.log(1 === "1");
 console.log(1 == true);
 console.log(1 === true);
-
 
 // 3. ----------------------------------
 // Functions as first-class objects
@@ -41,8 +38,6 @@ let greetMe2 = function(names) {
 greetMe(["world", "galaxy", "universe"]);
 greetMe2(["world", "galaxy", "universe"]);
 
-
-
 // 4. ----------------------------------
 // Anonymous functions
 function runThis(aFunction, args) {
@@ -51,8 +46,6 @@ function runThis(aFunction, args) {
 runThis(function(names) { for (name of names) { console.log("Hello, " + name + "!"); }},
         ["world", "galaxy", "universe"]);
 
-
-
 // 5. ----------------------------------
 // A common use cases for anonymous functions.
 //document.querySelector('html').onclick = function() {
@@ -60,8 +53,6 @@ runThis(function(names) { for (name of names) { console.log("Hello, " + name + "
 //}
 var myList = [1,2,3].map(function(x) {return x*2;});
 console.log(myList);
-
-
 
 // 6. ----------------------------------
 // Closures
@@ -90,10 +81,7 @@ for (f of buildListOfFunctions([1,2,3])) {
     f();
 }
 
-
-
 // Object-oriented programming in JavaScript
-
 // 8. ----------------------------------
 // Encapsulation
 function Shape(x, y) {
@@ -109,8 +97,6 @@ console.log(s1);
 var s2 = new Shape(1, 2);
 s2.move(2, 3);
 console.log(s2);
-
-
 
 // 9. ----------------------------------
 // Inheritance
@@ -128,8 +114,6 @@ console.log(r1);
 console.log(r1.area());
 r1.move(2, 3);
 console.log(r1);
-
-
 
 // 10. ----------------------------------
 // Polymorphism
