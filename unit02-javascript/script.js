@@ -16,8 +16,6 @@ console.log(test);
 
 // 2. ----------------------------------
 // Sameness
-console.log(1 == 1.0);
-console.log(1 === 1.0);
 console.log(1 == "1");
 console.log(1 === "1");
 console.log(1 == true);
@@ -81,7 +79,6 @@ for (f of buildListOfFunctions([1,2,3])) {
     f();
 }
 
-// Object-oriented programming in JavaScript
 // 8. ----------------------------------
 // Encapsulation
 function Shape(x, y) {
