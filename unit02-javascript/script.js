@@ -1,5 +1,6 @@
 /**
- * This implements some JS constructs, including first-class objects and prototype-base OO.
+ * This set of scripts demonstrate some useful JavaScript constructs, including first-class 
+ * objects and prototype-based, object-oriented programming.
  *
  * @author kvlinden
  * @version summer2016
@@ -17,11 +18,12 @@ console.log(test);
 
 // 2. ----------------------------------
 // Sameness
+console.log(1 == 1.0);
+console.log(1 === 1.0);
 console.log(1 == "1");
 console.log(1 === "1");
 console.log(1 == true);
 console.log(1 === true);
-
 
 
 // 3. ----------------------------------
@@ -53,11 +55,10 @@ runThis(function(names) { for (name of names) { console.log("Hello, " + name + "
 
 // 5. ----------------------------------
 // A common use cases for anonymous functions.
-document.querySelector('html').onclick = function() {
-    alert('Ouch! Stop poking me!');
-}
+//document.querySelector('html').onclick = function() {
+//    alert('Ouch! Stop poking me!');
+//}
 var myList = [1,2,3].map(function(x) {return x*2;});
-//var myList = [1,2,3].map(x => x*2);
 console.log(myList);
 
 
@@ -78,11 +79,10 @@ unfriendlyGreeter(["world", "galaxy", "universe"]);
 
 // 7. ----------------------------------
 // Strange closure example
-//   from http://stackoverflow.com/questions/111102/how-do-javascript-closures-work - example 5
 function buildListOfFunctions(list) {
     var result = [];
     for (var i = 0; i < list.length; i++) {
-        result.push( function() {console.log(i + ': ' + list[i])} );
+        result.push( function() {console.log("function " + i)} );
     }
     return result;
 }
