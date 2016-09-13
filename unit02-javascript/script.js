@@ -24,12 +24,12 @@ console.log(1 === true);
 // 3. ----------------------------------
 // Functions as first-class objects
 function greetMe(names) {
-    for (name of names) {
+    for (var name of names) {
         console.log("Hello, " + name + "!");
     }
 }
-let greetMe2 = function(names) {
-    for (name of names) {
+var greetMe2 = function(names) {
+    for (var name of names) {
         console.log("Hello, " + name + "!");
     }
 }
@@ -41,7 +41,7 @@ greetMe2(["world", "galaxy", "universe"]);
 function runThis(aFunction, args) {
     aFunction.call(null, args);
 }
-runThis(function(names) { for (name of names) { console.log("Hello, " + name + "!"); }},
+runThis(function(names) { for (var name of names) { console.log("Hello, " + name + "!"); }},
         ["world", "galaxy", "universe"]);
 
 // 5. ----------------------------------
@@ -56,7 +56,7 @@ console.log(myList);
 // Closures
 function makeGreeter(salutation) {
     return function(names) {
-        for (name of names) {
+        for (var name of names) {
             console.log(salutation + name + "!");
         }
     }
@@ -75,7 +75,7 @@ function buildListOfFunctions(list) {
     }
     return result;
 }
-for (f of buildListOfFunctions([1,2,3])) {
+for (var f of buildListOfFunctions([1,2,3])) {
     f();
 }
 
