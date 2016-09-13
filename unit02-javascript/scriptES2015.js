@@ -35,6 +35,20 @@ greetMe2.apply(null, [["world", "galaxy", "universe"]]);
 greetMe2.call(null, ["world", "galaxy", "universe"]);
 
 
+// 3.5 ---------------------------------
+// Binding
+function Point(x, y) {
+    this.x = x;
+    this.y = y;
+    this.move = function(newX, newY) {
+        this.x = newX;
+        this.y = newY;
+    }
+}
+let p1 = new Point(0, 0);
+p1.move(1, 1);
+console.log(p1);
+
 // 4. ----------------------------------
 // no changes here...
 
