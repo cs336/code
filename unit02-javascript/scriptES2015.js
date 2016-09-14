@@ -2,6 +2,7 @@
  * This set of scripts upgrades the examples given in scripts.js as follows:
  *   - It uses strict mode.
  *   - It upgrades to ES 2015, including =>, let, and class.
+ *   - It includes a new object binding example.
  *
  * @author kvlinden
  * @version summer2016
@@ -53,9 +54,11 @@ console.log(p1);
 // no changes here...
 
 // 5. ----------------------------------
-// => function definition notation
+// => function definition notation (and map-reduce)
 let myList = [1,2,3].map(x => x*2);
 console.log(myList);
+let myList2 = [1,2,3].reduce((x, y) => x+y);
+console.log(myList2);
 
 // 6. ----------------------------------
 // no changes here...
