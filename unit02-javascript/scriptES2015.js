@@ -17,8 +17,7 @@ test = "forty-two";
 test = true;
 console.log(test);
 
-// 2. ----------------------------------
-// no changes here...
+// 2. no changes here...
 
 // 3. ----------------------------------
 // Using call() and apply()
@@ -50,8 +49,7 @@ let p1 = new Point(0, 0);
 p1.move(1, 1);
 console.log(p1);
 
-// 4. ----------------------------------
-// no changes here...
+// 4. no changes here...
 
 // 5. ----------------------------------
 // => function definition notation (and map-reduce)
@@ -60,11 +58,9 @@ console.log(myList);
 let myList2 = [1,2,3].reduce((x, y) => x+y);
 console.log(myList2);
 
-// 6. ----------------------------------
-// no changes here...
+// 6. no changes here...
 
-// 7. ----------------------------------
-// no changes here...
+// 7. no changes here...
 
 // 7.5 --------------------------------
 // Evil prototype tricks
