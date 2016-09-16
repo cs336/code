@@ -66,6 +66,18 @@ console.log(myList2);
 // 7. ----------------------------------
 // no changes here...
 
+// 7.5 --------------------------------
+// Evil prototype tricks
+String.prototype.cipher = function(shift) {
+    let result = "";
+    for (let c of this) {
+        result += String.fromCharCode(c.charCodeAt(0) + shift);
+    }
+    return result;
+}
+let s = "testing";
+console.log(s.cipher(1));
+
 // 8. ----------------------------------
 // Encapsulation
 class Shape {
