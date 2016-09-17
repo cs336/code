@@ -9,6 +9,6 @@
     "author": "kvlinden",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.14.0"
+        "http-status-codes": "^1.0.6"
     }
 }

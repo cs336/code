@@ -1,19 +1,28 @@
 /**
- * Sample server for CS 336, Unit 3 - Run with either:
- *    npm start
+ * Sample (non-Express) server for CS 336, Unit 3 - Run with:
  *    node script.js
  *
  * @author kvlinden
  * @version summer2016
  */
 
-const express = require('express');
-const app = express();
+let http = require('http');
+let http_status = require('http-status-codes');
 
-app.set('port', (process.env.PORT || 3000));
+const PORT = 3000;
 
-// route code here...
+http.createServer(function (req, res) {
+    if (req.url == '/hello') {
+        res.writeHead(http_status.OK, {'Content-Type': 'text/plain'});
+        res.end('Hello, node!');
+    } else {
+        res.writeHead(http_status.NOT_FOUND, {'Content-Type': 'text/plain'});
+	res.end();
+    }
+}).listen(PORT);
 
-app.listen(app.get('port'), function () {
-    console.log('Example app listening on port ' + app.get('port') + '!');
-});
+console.log('Server running on port ' + PORT + '.');
+
+// Load/Invoke a function from a custom module.
+let my_module = require('./module');
+console.log(my_module.my_function());
