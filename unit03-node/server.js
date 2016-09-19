@@ -1,6 +1,7 @@
 /**
- * Sample (non-Express) server for CS 336, Unit 3 - Run with:
+ * Sample (Node.js, non-Express) server for CS 336, Unit 3 - Run with either:
  *    node script.js
+ *    npm start
  *
  * @author kvlinden
  * @version summer2016
