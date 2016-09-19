@@ -7,22 +7,25 @@
  * @version summer2016
  */
 
-let http = require('http');
-let http_status = require('http-status-codes');
+const http = require('http');
+const http_status = require('http-status-codes');
 
+const HOST = "127.0.0.1";
 const PORT = 3000;
 
-http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
     if (req.url == '/hello') {
         res.writeHead(http_status.OK, {'Content-Type': 'text/plain'});
         res.end('Hello, node!');
     } else {
         res.writeHead(http_status.NOT_FOUND, {'Content-Type': 'text/plain'});
-	res.end();
+        res.end();
     }
-}).listen(PORT);
+})
 
-console.log('Server running on port ' + PORT + '.');
+server.listen(PORT, HOST, () => {
+    console.log('Server running on port ' + PORT + '.');
+});
 
 // Load/Invoke a function from a custom module.
 let my_module = require('./module');
