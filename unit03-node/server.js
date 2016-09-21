@@ -16,7 +16,7 @@ const PORT = 3000;
 const server = http.createServer((req, res) => {
     if (req.url == '/hello') {
         res.writeHead(http_status.OK, {'Content-Type': 'text/plain'});
-        res.end('Hello, node!');
+        res.end('Hello, Node.js!');
     } else {
         res.writeHead(http_status.NOT_FOUND, {'Content-Type': 'text/plain'});
         res.end();
@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(PORT, HOST, () => {
-    console.log('Server running on port ' + PORT + '.');
+    console.log('Server running on ' + HOST + ':' + PORT + '.');
 });
 
 // Load/Invoke a function from a custom module.
