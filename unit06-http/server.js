@@ -25,9 +25,9 @@ app.get('/', function(req, res) {
     res.send("Hello, Express route!");
 });
 
-// This rejects all access to the secret route.
-app.get('/secret', function(req, res) {
-    res.sendStatus(http_status.FORBIDDEN);
+// This rejects access to this "lost" resource.
+app.get('/lost', function(req, res) {
+    res.sendStatus(http_status.NOT_FOUND);
 });
 
 // --------------------------------
