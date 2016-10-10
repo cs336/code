@@ -1,8 +1,5 @@
 /**
  * This implements some HTTP method/code, form and cookie examples.
- *
- * @author kvlinden
- * @version summer2016
  */
 
 const express = require('express')
@@ -20,7 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
 // --------------------------------
 // HTTP route and return code examples.
 
@@ -34,7 +30,6 @@ app.get('/secret', function(req, res) {
     res.sendStatus(http_status.FORBIDDEN);
 });
 
-
 // --------------------------------
 // HTTP form example
 
@@ -43,7 +38,6 @@ app.post('/forms', function(req, res) {
     res.send('Hello, form POST!<br>Posted message: <code>'
 	     + req.body.user_message + '</code>');
 });
-
 
 // --------------------------------
 // HTTP cookies examples
@@ -64,7 +58,6 @@ app.get("/cookies/clear", function(req, res) {
     res.clearCookie("cookieName");
     res.send("Cookie is deleted.");
 });
-
 
 app.listen(PORT, HOST, () => {
     console.log("listening on " + HOST + ":" + PORT + "...");
