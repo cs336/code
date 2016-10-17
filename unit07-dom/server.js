@@ -20,14 +20,9 @@ app.get("/", function(req, res) {
 });
 
 app.get("/fetch", function(req, res) {
-    res.send({"content" : "Did we mention that " + req.query.name + "&rsquo;s free!"});
-});
-
-app.get("/fetch2", function(req, res) {
-    res.send({"content" : "Did we mention that it&rsquo;s free!"});
+    res.send({"content" : "Did we mention that " + req.query.name + " is free!"});
 });
 
 app.listen(PORT, HOST, () => {
     console.log("listening on " + HOST + ":" + PORT + "...");
 });
-

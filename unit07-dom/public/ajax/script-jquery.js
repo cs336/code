@@ -19,7 +19,7 @@ $(document).ready(function() {
             })
              .done(function(result){
                  console.log('AJAX request succeeded...');
-		 $("#fetchContent").html("<p>" + result.content + "</p>");
+                 $("#fetch").next("div").html("<p>" + result.content + "</p>");
              })
              .fail(function(xhr, status, errorThrown) {
                  console.log('AJAX request failed...');
