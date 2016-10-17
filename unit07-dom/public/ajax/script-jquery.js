@@ -9,21 +9,23 @@ $(document).ready(function() {
     );
     $("h2#fetch").click(
         function() {
-            console.log('AJAX request issued...');
-            $.ajax({
-                url: "/fetch",
-                type: "GET",
-                data: {
-                    name: "jQuery-AJAX"
-                }
-            })
-             .done(function(result){
-                 console.log('AJAX request succeeded...');
-                 $("#fetch").next("div").html("<p>" + result.content + "</p>");
-             })
-             .fail(function(xhr, status, errorThrown) {
-                 console.log('AJAX request failed...');
-             })
+            if ($(this).attr("class") == undefined || $(this).hasClass("minus")) {
+                console.log('AJAX request issued...');
+                $.ajax({
+                    url: "/fetch",
+                    type: "GET",
+                    data: {
+                        name: "jQuery-AJAX"
+                    }
+                })
+                 .done(function(result){
+                     console.log('AJAX request succeeded...');
+                     $("#fetch").next("div").html("<p>" + result.content + "</p>");
+                 })
+                 .fail(function(xhr, status, errorThrown) {
+                     console.log('AJAX request failed...');
+                 })
+            }
         }
     );
 });
