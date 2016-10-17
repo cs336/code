@@ -9,7 +9,7 @@ $(document).ready(function() {
     );
     $("h2#fetch").click(
         function() {
-            if ($(this).attr("class") == undefined || $(this).hasClass("minus")) {
+            if ($(this).hasClass("minus")) {
                 console.log('AJAX request issued...');
                 $.ajax({
                     url: "/fetch",
