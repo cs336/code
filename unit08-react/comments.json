@@ -7,17 +7,7 @@
     {
         "id": 1420070400000,
         "author": "Paul O’Shannessy",
-        "text": "React is *great*!"
-    },
-    {
-        "id": 1464988635157,
-        "author": "ben",
-        "text": "*abc*"
-    },
-    {
-        "id": 1464988636500,
-        "author": "ben",
-        "text": "*abc*"
+        "text": "React is <em>great</em>!"
     },
     {
         "id": 1464988717637,
