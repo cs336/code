@@ -8,13 +8,13 @@ var CommentBox = React.createClass({
             url: this.props.url,
             dataType: 'json',
             cache: false,
-            success: function(data) {
-                this.setState({data: data});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+        })
+         .done(function(result){
+             this.setState({data: result});
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             console.error(this.props.url, status, err.toString());
+         }.bind(this));
     },
     handleCommentSubmit: function(comment) {
         var comments = this.state.data;
@@ -29,14 +29,14 @@ var CommentBox = React.createClass({
             dataType: 'json',
             type: 'POST',
             data: comment,
-            success: function(data) {
-                this.setState({data: data});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                this.setState({data: comments});
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+        })
+         .done(function(result){
+             this.setState({data: result});
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             this.setState({data: comments});
+             console.error(this.props.url, status, errorThrown.toString());
+         }.bind(this));
     },
     componentDidMount: function() {
         this.loadCommentsFromServer();
@@ -112,24 +112,26 @@ var CommentForm = React.createClass({
         return (
             <form className="commentForm" onSubmit={this.handleSubmit}>
                 <input
+                    className="ui-widget ui-corner-all"
                     type="text"
                     placeholder="Your name"
                     value={this.state.author}
                     onChange={this.handleAuthorChange}
                 />
                 <input
+                    className="ui-widget ui-corner-all"
                     type="text"
                     placeholder="Say something..."
                     value={this.state.text}
                     onChange={this.handleTextChange}
                 />
-                <input type="submit" value="Post" />
+                <input className="ui-button ui-widget ui-corner-all" type="submit" value="Post" />
             </form>
         );
     }
 });
 
 ReactDOM.render(
-    <CommentBox url="/api/comments" />,
+    <CommentBox url="/api/comments" pollInterval="{2000}"/>,
     document.getElementById('content')
 );
