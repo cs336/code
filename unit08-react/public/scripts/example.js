@@ -12,7 +12,7 @@ var CommentBox = React.createClass({
              this.setState({data: result});
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
-             console.error(this.props.url, status, err.toString());
+             console.error(this.props.url, status, errorThrown.toString());
          }.bind(this));
     },
     handleCommentSubmit: function(comment) {
