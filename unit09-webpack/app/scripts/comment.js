@@ -10,7 +10,6 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className="comment">
-		blob...
                 <h2 className="commentAuthor" >
                     {this.props.author}
                 </h2>
