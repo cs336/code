@@ -57,7 +57,7 @@ app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
-var mongoURL = 'mongodb://cs336:bjarne@ds015995.mlab.com:15995/kvlinden-cs336';
+var mongoURL = 'mongodb://cs336:password@ds015995.mlab.com:15995/kvlinden-cs336';
 MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) {
         throw err;
