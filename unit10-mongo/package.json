@@ -31,8 +31,8 @@
   },
   "scripts": {
     "build": "webpack --progress",
-    "dev": "node server.js & webpack-dev-server --progress",
-    "start": "kill $(pgrep node) ; nodemon --ignore app/ server.js &",
+    "dev": "kill $(pgrep node) ; nodemon --ignore app/ server.js & webpack-dev-server --progress &",
+    "start": "node server.js",
     "stop": "kill $(pgrep node)"
   },
   "repository": {

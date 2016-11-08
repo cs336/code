@@ -10,6 +10,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -57,10 +58,19 @@ app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
-var mongoURL = 'mongodb://cs336:password@ds015995.mlab.com:15995/kvlinden-cs336';
-MongoClient.connect(mongoURL, function(err, dbConnection) {
+// Load the database password from a git-ignored text file.
+fs.readFile(path.join(__dirname, '.passwordrc'), function(err, password) {
     if (err) {
-        throw err;
+        console.error(err);
+        process.exit(1);
     }
-    db = dbConnection;
+    var mongoURL = 'mongodb://cs336:' + password + '@ds015995.mlab.com:15995/kvlinden-cs336';
+    MongoClient.connect(mongoURL, function(err, dbConnection) {
+	if (err) {
+	    console.log("URL: " + mongoURL + " " + password);
+            throw err;
+	}
+	db = dbConnection;
+    });
 });
+
