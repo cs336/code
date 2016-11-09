@@ -16,7 +16,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var MongoClient = require('mongodb').MongoClient
-var assert = require('assert');
 
 var db;
 
@@ -34,7 +33,7 @@ app.use(function(req, res, next) {
 
 app.get('/api/comments', function(req, res) {
     db.collection("comments").find({}).toArray(function(err, docs) {
-	assert.equal(err, null);
+        if (err) throw err;
         res.json(docs);
     });
 });
@@ -46,7 +45,7 @@ app.post('/api/comments', function(req, res) {
         text: req.body.text,
     };
     db.collection("comments").insertOne(newComment, function(err, result) {
-	assert.equal(err, null);
+        if (err) throw err;
         var newId = result.insertedId;
         db.collection("bugs").find({_id: newId}).next(function(err, doc) {
             res.json(doc);
@@ -58,19 +57,12 @@ app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
-// Load the database password from a git-ignored text file.
+// Load the database password from a git-ignored text file and construct the database connection object.
 fs.readFile(path.join(__dirname, '.passwordrc'), function(err, password) {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
+    if (err) throw err;
     var mongoURL = 'mongodb://cs336:' + password + '@ds015995.mlab.com:15995/kvlinden-cs336';
     MongoClient.connect(mongoURL, function(err, dbConnection) {
-	if (err) {
-	    console.log("URL: " + mongoURL + " " + password);
-            throw err;
-	}
-	db = dbConnection;
+        if (err) throw err;
+        db = dbConnection;
     });
 });
-
