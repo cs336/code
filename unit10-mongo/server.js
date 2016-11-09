@@ -47,10 +47,10 @@ app.post('/api/comments', function(req, res) {
     db.collection("comments").insertOne(newComment, function(err, result) {
         if (err) throw err;
         var newId = result.insertedId;
-	db.collection("comments").find({}).toArray(function(err, docs) {
+        db.collection("comments").find({}).toArray(function(err, docs) {
             if (err) throw err;
             res.json(docs);
-	});
+        });
     });
 });
 
