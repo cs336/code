@@ -47,7 +47,7 @@ app.post('/api/comments', function(req, res) {
     db.collection("comments").insertOne(newComment, function(err, result) {
         if (err) throw err;
         var newId = result.insertedId;
-        db.collection("bugs").find({_id: newId}).next(function(err, doc) {
+        db.collection("comments").find({_id: newId}).next(function(err, doc) {
             res.json(doc);
         });
     });

@@ -42,7 +42,6 @@ module.exports = React.createClass({
     },
     componentDidMount: function() {
         this.loadCommentsFromServer();
-	console.log(this.props.pollInterval);
         setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
     render: function() {
