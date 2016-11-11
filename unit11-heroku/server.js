@@ -59,7 +59,7 @@ app.listen(app.get('port'), function() {
 
 // Load the database password from a git-ignored text file and construct the database connection object.
 fs.readFile(path.join(__dirname, '.passwordrc'), function(err, password) {
-    if (err) throw err;
+    if (err) password = 'bjarne';
     var mongoURL = 'mongodb://cs336:' + password + '@ds015995.mlab.com:15995/kvlinden-cs336';
     MongoClient.connect(mongoURL, function(err, dbConnection) {
         if (err) throw err;
