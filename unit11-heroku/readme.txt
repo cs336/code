@@ -4,4 +4,3 @@ This is a refactored implementation of the (old) Facebook ReactJS tutorial - the
      (formerly at https://facebook.github.io/react/docs/tutorial.html)
 
 This application is upgraded to deploy to Heroku based on the specification in lab exercise 11 (https://cs.calvin.edu/courses/cs/336/kvlinden/11heroku/lab.html).
-

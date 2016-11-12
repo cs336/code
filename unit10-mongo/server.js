@@ -10,7 +10,6 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -57,12 +56,11 @@ app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
-// Load the database password from a git-ignored text file and construct the database connection object.
-fs.readFile(path.join(__dirname, '.passwordrc'), function(err, password) {
+// This assumes that the MongoDB password has been set as an environment variable.
+var mongoURL = 'mongodb://cs336:' +
+	       process.env.MONGO_PASSWORD +
+	       '@ds015995.mlab.com:15995/kvlinden-cs336';
+MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
-    var mongoURL = 'mongodb://cs336:' + password + '@ds015995.mlab.com:15995/kvlinden-cs336';
-    MongoClient.connect(mongoURL, function(err, dbConnection) {
-        if (err) throw err;
-        db = dbConnection;
-    });
+    db = dbConnection;
 });
