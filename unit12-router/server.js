@@ -54,7 +54,7 @@ app.post('/api/comments', function(req, res) {
 
 app.get('/api/comments/:id', function(req, res) {
     db.collection("comments").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
-	if (err) throw err;
+        if (err) throw err;
         res.json(docs);
     });
 });
@@ -66,16 +66,24 @@ app.put('/api/comments/:id', function(req, res) {
         { id: updateId },
         { $set: update },
         function(err, result) {
-	    if (err) throw err;
-            db.collection("comments").find({id: updateId}).next(function(err, doc) {
-		if (err) throw err;
-		res.send(doc);
+            if (err) throw err;
+            db.collection("comments").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
             });
         });
 });
 
 app.delete('/api/comments/:id', function(req, res) {
-    db.collection("comments").remove({'id': Number(req.params.id)});
+    db.collection("comments").deleteOne(
+        {'id': Number(req.params.id)},
+        function(err, result) {
+            if (err) throw err;
+            db.collection("comments").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
 });
 
 app.listen(app.get('port'), function() {
@@ -84,8 +92,8 @@ app.listen(app.get('port'), function() {
 
 // This assumes that the MongoDB password has been set as an environment variable.
 var mongoURL = 'mongodb://cs336:' +
-	       process.env.MONGO_PASSWORD +
-	       '@ds015995.mlab.com:15995/kvlinden-cs336';
+               process.env.MONGO_PASSWORD +
+               '@ds015995.mlab.com:15995/kvlinden-cs336';
 console.log(mongoURL);
 MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
