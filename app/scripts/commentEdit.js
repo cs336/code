@@ -27,7 +27,10 @@ module.exports = React.createClass({
     handleTextChange: function(e) {
         this.setState({text: e.target.value});
     },
-    handleSubmit: function() {
+    contextTypes: {
+        router: React.PropTypes.object
+    },
+    handleUpdate: function() {
         var updatedComment = {
             author: this.state.author.trim(),
             text: this.state.text.trim()
@@ -37,40 +40,47 @@ module.exports = React.createClass({
             dataType: 'json',
             type: 'PUT',
             contentType:'application/json',
-            data: JSON.stringify(updatedComment),
-            success: function(comments) {
-                this.setState(comments[0]);
-            }.bind(this)
-        });
+            data: JSON.stringify(updatedComment)
+        })
+         .done(function(comments){
+             this.setState({data: comments});
+             this.context.router.push('/');
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             console.error(API_URL, status, errorThrown.toString());
+         }.bind(this));
     },
     handleDelete: function() {
         $.ajax({
             url: API_URL + "/" + this.props.params.id,
             type: 'DELETE',
-            success: function(comments) {
-                this.setState(comments[0]);
-            }.bind(this)
-        });
+        })
+         .done(function(){
+             this.context.router.push('/');
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             console.error(API_URL, status, errorThrown.toString());
+         }.bind(this));
     },
     render: function() {
         return (
             <div>
-		<form className="commentForm" onSubmit={this.handleSubmit}>
-		    <h1>Comment Edit - {this.state.id}</h1>
-		    <input
-			type="text"
-			value={this.state.author}
-			onChange={this.handleAuthorChange}
-		    />
-		    <input
-			type="text"
-			value={this.state.text}
-			onChange={this.handleTextChange}
-		    />
-		    <input type="submit" value="Update" />
-		    <button type="button" onClick={this.handleDelete}>Delete</button>
-		</form>
-		<Link to='/'>Back</Link>
+                <form className="commentForm">
+                    <h1>Comment Edit - {this.state.id}</h1>
+                    <input
+                        type="text"
+                        value={this.state.author}
+                        onChange={this.handleAuthorChange}
+                    />
+                    <input
+                        type="text"
+                        value={this.state.text}
+                        onChange={this.handleTextChange}
+                    />
+                    <button type="button" onClick={this.handleUpdate}>Update</button>
+                    <button type="button" onClick={this.handleDelete}>Delete</button>
+                </form>
+                <Link to='/'>Cancel</Link>
             </div>
         );
     }
