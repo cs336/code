@@ -17,10 +17,11 @@ var app = express();
 var MongoClient = require('mongodb').MongoClient
 
 var db;
+var APP_PATH = path.join(__dirname, 'dist');
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(path.join(__dirname, 'dist')));
+app.use('/', express.static(APP_PATH));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -85,6 +86,11 @@ app.delete('/api/comments/:id', function(req, res) {
             });
         });
 });
+
+// Send all other routes to the app root.
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(APP_PATH, 'index.html'))
+})
 
 app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
