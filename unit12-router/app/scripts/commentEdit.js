@@ -43,7 +43,6 @@ module.exports = React.createClass({
             data: JSON.stringify(updatedComment)
         })
          .done(function(comments){
-             this.setState({data: comments});
              this.context.router.push('/');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
@@ -55,7 +54,7 @@ module.exports = React.createClass({
             url: API_URL + "/" + this.props.params.id,
             type: 'DELETE',
         })
-         .done(function(){
+         .done(function(comments){
              this.context.router.push('/');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
