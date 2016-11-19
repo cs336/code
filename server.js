@@ -100,7 +100,6 @@ app.listen(app.get('port'), function() {
 var mongoURL = 'mongodb://cs336:' +
                process.env.MONGO_PASSWORD +
                '@ds015995.mlab.com:15995/kvlinden-cs336';
-console.log(mongoURL);
 MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
     db = dbConnection;
