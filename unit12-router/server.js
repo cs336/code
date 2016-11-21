@@ -87,10 +87,8 @@ app.delete('/api/comments/:id', function(req, res) {
         });
 });
 
-// Send all other routes to the app root.
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(APP_PATH, 'index.html'))
-})
+// Send all routes/methods not specified above to the app root.
+app.use('*', express.static(APP_PATH));
 
 app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
