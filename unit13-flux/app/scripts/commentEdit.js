@@ -24,11 +24,10 @@ module.exports = React.createClass({
     },
     handleUpdate: function() {
         var updatedComment = {
-	    id: Number(this.props.params.id),
             author: this.state.author.trim(),
             text: this.state.text.trim()
         }
-        store.dispatch(ActionTools.editComment(updatedComment));
+        store.dispatch(ActionTools.editComment(Number(this.props.params.id), updatedComment));
         this.context.router.push('/');
     },
     render: function() {

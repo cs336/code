@@ -39,9 +39,10 @@ let ActionTools = {
             comment: comment
         };
     },
-    editComment: function(comment) {
+    editComment: function(id, comment) {
         return {
             type: 'EDIT_COMMENT',
+            id: id,
             comment: comment
         };
     }
@@ -69,7 +70,8 @@ let Reducers = {
             data: action.comment,
         })
          .done(function(result){
-             // This is now handled by the store.
+             // Do nothing; the comment is optimistially displayed
+             // already and will refresh on the next poll.
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
              console.error(API_URL, status, errorThrown.toString());
@@ -77,14 +79,14 @@ let Reducers = {
     },
     editComment: function(action) {
         $.ajax({
-            url: API_URL + "/" + action.comment.id,
+            url: API_URL + "/" + action.id,
             dataType: 'json',
             type: 'PUT',
-            contentType:'application/json',
-            data: JSON.stringify(action.comment)
+            data: action.comment
         })
          .done(function(comments){
-	     // This is now handled by the store.
+             // Do nothing; the comment is optimistially displayed
+             // already and will refresh on the next poll.
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
              console.error(API_URL, status, errorThrown.toString());
