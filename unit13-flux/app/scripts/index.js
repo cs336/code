@@ -8,7 +8,7 @@ import { StoreTools } from './flux';
 
 import '../css/base.css';
 
-StoreTools.startLoadingComments();
+StoreTools.loadCommentsFromServer();
 
 ReactDOM.render((
     <Router history={browserHistory}>

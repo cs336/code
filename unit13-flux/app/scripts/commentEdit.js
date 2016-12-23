@@ -24,17 +24,18 @@ module.exports = React.createClass({
     },
     handleUpdate: function() {
         var updatedComment = {
+	    id: Number(this.props.params.id),
             author: this.state.author.trim(),
             text: this.state.text.trim()
         }
-        store.dispatch(ActionTools.editComment(Number(this.props.params.id), updatedComment));
+        store.dispatch(ActionTools.editComment(updatedComment));
         this.context.router.push('/');
     },
     render: function() {
         return (
             <div>
                 <form className="commentForm">
-                    <h1>Comment Edit - {this.state.id}</h1>
+                    <h1>Comment Edit - {this.props.params.id}</h1>
                     <input
                         type="text"
                         value={this.state.author}
