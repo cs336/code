@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 
+import style from '../css/base.css';
+
 module.exports = React.createClass({
     getInitialState: function() {
         return {author: '', text: ''};
@@ -23,7 +25,7 @@ module.exports = React.createClass({
     },
     render: function() {
         return (
-            <form className="commentForm" onSubmit={this.handleSubmit}>
+            <form className={style.commentForm} onSubmit={this.handleSubmit}>
                 <input className="ui-widget ui-corner-all" type="text" placeholder="name..."
                     value={this.state.author} onChange={this.handleAuthorChange}
                 />

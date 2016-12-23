@@ -1,6 +1,8 @@
 import React from 'react';
 import Remarkable from 'remarkable';
 
+import style from '../css/base.css';
+
 module.exports = React.createClass({
     rawMarkup: function() {
         var md = new Remarkable({html: true});
@@ -10,10 +12,10 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className="comment">
-                <h2 className="commentAuthor" >
-                    {this.props.author}
-                </h2>
-                <span dangerouslySetInnerHTML={this.rawMarkup()} />
+                <span className={style.commentAuthor} >
+                    {this.props.author}&nbsp;&mdash;&nbsp;
+                </span>
+                <span className={style.commentText} dangerouslySetInnerHTML={this.rawMarkup()} />
             </div>
         );
     }
